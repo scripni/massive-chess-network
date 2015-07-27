@@ -1,0 +1,25 @@
+{
+  "name": "massive-chess-network",
+  "version": "0.0.1",
+  "description": "Massive Chess networking layer, talks to freechess.org",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scripni/massive-chess-network.git"
+  },
+  "keywords": [
+    "massive-chess",
+    "chess",
+    "telnet",
+    "telnet-client",
+    "freechess.org"
+  ],
+  "author": "Andrei Scripniciuc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scripni/massive-chess-network/issues"
+  }
+}
