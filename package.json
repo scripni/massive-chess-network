@@ -1,6 +1,6 @@
 {
   "name": "massive-chess-network",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Massive Chess networking layer, talks to freechess.org",
   "main": "index.js",
   "scripts": {
