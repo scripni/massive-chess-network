@@ -1,10 +1,10 @@
 {
   "name": "massive-chess-network",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Massive Chess networking layer, talks to freechess.org",
   "main": "index.js",
   "scripts": {
-    "test": "mocha spec test"
+    "test": "grunt jshint && mocha spec test"
   },
   "repository": {
     "type": "git",

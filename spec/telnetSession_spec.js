@@ -17,7 +17,7 @@ describe("a telnet session", function() {
 
 		it("starts from a disconnected state", function() {
 
-			assert(telnetSession.getIsConnected() == false);
+			assert(telnetSession.getIsConnected() === false);
 
 		});
 
@@ -29,6 +29,13 @@ describe("a telnet session", function() {
 				done();
 
 			});
+		});
+
+		after(function() {
+
+			assert(telnetSession);
+			telnetSession.destroy();
+			assert(telnetSession.getIsConnected() === false);
 
 		});
 
