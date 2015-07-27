@@ -1,1 +1,1 @@
-console.log('here's the network');
+module.exports = require('./lib/telnetSession');
