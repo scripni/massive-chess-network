@@ -21,5 +21,10 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/scripni/massive-chess-network/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "mocha": "~2.2.5",
+    "should": "~7.0.2"
   }
 }
