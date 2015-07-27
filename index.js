@@ -1,3 +1,9 @@
-module.exports = require('./lib/telnetSession');
+var telnetSession = require("./lib/telnetSession");
 
-console.log("hello from the network");
+module.exports = function() {
+
+	console.log("hello from the network");
+
+	return telnetSession;
+
+};
