@@ -40,7 +40,7 @@ describe("a telnet client", function() {
 
 		it("receives a message", function(onDone) {
 
-			telnetClient.beginReadAsync(function(message) {
+			telnetClient.beginReadAsync("login", function(message) {
 
 				telnetClient.destroy();
 				assert(message.length > 0);
