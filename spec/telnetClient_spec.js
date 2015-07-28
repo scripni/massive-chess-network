@@ -42,7 +42,7 @@ describe("a telnet client", function() {
 		it("receives a message", function(onDone) {
 
 			this.timeout(5000);
-			telnetClient.beginReadAsync("login", function(message) {
+			telnetClient.beginReadAsync(function(message) {
 
 				telnetClient.destroy();
 				assert(message.length > 0);
@@ -62,3 +62,4 @@ describe("a telnet client", function() {
 	});
 
 });
+

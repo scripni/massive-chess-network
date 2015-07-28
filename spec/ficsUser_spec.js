@@ -16,7 +16,7 @@ describe("A FICS user", function() {
 
 		it("signs in when no username is specified", function(onDone) {
 
-			this.timeout(5000);
+			this.timeout(10000);
 			user.signInAsync(function(success) {
 				assert(success);
 				onDone();
