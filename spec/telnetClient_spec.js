@@ -30,6 +30,7 @@ describe("a telnet client", function() {
 
 		it("can initiate the connection with the server", function(onDone) {
 
+			this.timeout(5000);
 			telnetClient.connectAsync(function() {
 
 				assert(telnetClient.getIsConnected());
@@ -40,6 +41,7 @@ describe("a telnet client", function() {
 
 		it("receives a message", function(onDone) {
 
+			this.timeout(5000);
 			telnetClient.beginReadAsync("login", function(message) {
 
 				telnetClient.destroy();
