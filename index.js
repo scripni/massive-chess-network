@@ -1,9 +1,11 @@
-var telnetSession = require("./lib/telnetSession");
+console.log("begining massive-chess-network initialization");
 
-module.exports = function() {
+var TelnetClient = require("./lib/telnetClient");
+var FicsUser = require("./lib/ficsUser");
 
-	console.log("hello from the network");
+module.exports = {};
 
-	return telnetSession;
+module.exports.telnetClient = TelnetClient;
+module.exports.ficsUser = FicsUser;
 
-};
+console.log("ending massive-chess-network initialization");
