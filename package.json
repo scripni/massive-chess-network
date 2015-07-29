@@ -4,7 +4,7 @@
   "description": "Massive Chess networking layer, talks to freechess.org",
   "main": "index.js",
   "scripts": {
-    "test": "grunt jshint && mocha test"
+    "test": "grunt jshint && mocha test --recursive"
   },
   "repository": {
     "type": "git",
