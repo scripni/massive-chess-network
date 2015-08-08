@@ -1,64 +1,77 @@
 var assert = require("assert");
 var MessageBroker = require("../lib/messageBroker");
+var fs = require("fs");
 
 describe("a message broker", function() {
-	describe("receive an authentication response", function() {
+
+	describe("parses an authentication response", function() {
+		var loginMessage;
+
+		before(function(onDone) {
+			fs.readFile("./data/loginPrompt.txt", function(err, data) {
+				loginMessage = data;
+				onDone();
+			});
+		});
+
+		it("parses the message", function() {
+			
+		});
+	});
+
+	describe("parses a welcome message", function() {
 
 	});
 
-	describe("receive a welcome message", function() {
+	describe("parses a game seek message", function() {
 
 	});
 
-	describe("receive a game seek message", function() {
+	describe("parses a game start message", function() {
 
 	});
 
-	describe("receive a game start message", function() {
+	describe("parses a game move message", function() {
 
 	});
 
-	describe("receive a game move message", function() {
+	describe("parses a game end message", function() {
 
 	});
 
-	describe("receive a game end message", function() {
+	describe("parses a global chat message", function() {
 
 	});
 
-	describe("receive a global chat message", function() {
+	describe("parses a private chat message", function() {
 
 	});
 
-	describe("receive a private chat message", function() {
+	describe("parses an unknown message", function() {
 
 	});
 
-	describe("receive an unknown message", function() {
+	describe("sends an authentication message", function() {
 
 	});
 
-	describe("send an authentication message", function() {
+	describe("sends a game seek message", function() {
 
 	});
 
-	describe("send a game seek message", function() {
+	describe("sends a global chat message", function() {
 
 	});
 
-	describe("send a global chat message", function() {
+	describe("sends a private chat message", function() {
 
 	});
 
-	describe("send a private chat message", function() {
+	describe("sends a message when the receiver is unavailable", function() {
 
 	});
 
-	describe("send a message when the receiver is unavailable", function() {
-
-	});
-
-	describe("send a null message", function() {
+	describe("sends a null message", function() {
 
 	});
 });
