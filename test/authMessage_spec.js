@@ -26,7 +26,7 @@ describe("authentication message", function() {
 		});
 
 		it("gets the assigned username", function() {
-			assert(authMessage.getUserName() === "GuestCSTP");
+			assert(authMessage.getUserName(), "GuestCSTP");
 		});
 	});
 });
