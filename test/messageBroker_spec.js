@@ -1,6 +1,6 @@
 var assert = require("assert");
 var MessageBroker = require("../lib/messageBroker");
-var MockSocket = require("./mockSocket");
+var MockSocket = require("./mocks/mockSocket");
 
 describe("a messsage broker", function() {
 	describe("connect", function() {
