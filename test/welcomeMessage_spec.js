@@ -3,7 +3,7 @@ var fs = require("fs");
 var welcomeMessage = require("../lib/welcomeMessage");
 
 describe("welcome message", function() {
-	describe("a successful connection", function() {
+	describe("parsing data", function() {
 		var rawMessage;
 		
 		before(function(onDone) {
@@ -19,7 +19,13 @@ describe("welcome message", function() {
 
 		it("detects the welcome message", function() {
 			var message = welcomeMessage.parse(rawMessage);
-			assert(message);
+			assert.ok(message);
+			assert.ok(message instanceof welcomeMessage.message);
+		});
+
+		it("ignores other messages", function() {
+			var message = welcomeMessage.parse("fake data");
+			assert.ok(message === null);
 		});
 	});
 });
