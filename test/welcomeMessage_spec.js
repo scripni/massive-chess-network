@@ -19,7 +19,6 @@ describe("welcome message", function() {
 
 		it("detects the welcome message", function() {
 			var message = welcomeMessage.parse(rawMessage);
-			assert.ok(message);
 			assert.ok(message instanceof welcomeMessage.message);
 		});
 

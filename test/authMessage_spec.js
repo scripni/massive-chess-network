@@ -1,10 +1,10 @@
 var assert = require("assert");
 var fs = require("fs");
-var AuthMessage = require("../lib/authMessage");
+var authMessage = require("../lib/authMessage");
 
 describe("authentication message", function() {
 	describe("a successful anonymous authentication", function() {
-		var authMessage;
+		var rawMessage;
 		
 		before(function(onDone) {
 			fs.readFile(__dirname + "/data/authenticationAccepted.txt", "utf-8", function(err, data) {
@@ -12,21 +12,22 @@ describe("authentication message", function() {
 					throw err;
 				}
 
-				authMessage = new AuthMessage(data);
+				rawMessage = data;
 				onDone();
 			});
 		});
 
 		it("detects the authentication message", function() {
-			assert(authMessage);
-		});
-
-		it("detects the authentication is for a guest", function() {
-			assert(authMessage.isGuest());
-		});
-
-		it("gets the assigned username", function() {
-			assert(authMessage.getUserName(), "GuestCSTP");
+			var message = authMessage.parse(rawMessage);
+			
+			// has the correct type
+			assert.ok(message instanceof authMessage.message);
+			
+			// detects the message is for a guest
+			assert.ok(message.isGuest());
+			
+			// reads the correct username
+			assert(message.getUserName(), "GuestCSTP");
 		});
 	});
 });
