@@ -43,4 +43,27 @@ describe("a messsage broker", function() {
 			assert.equal("Fake Message\n\rAnother Fake Message\n\r", messageBroker.getMessage());
 		});
 	});
+
+	describe("receiving a complete message", function() {
+		var messageBroker;
+		var socket = new MockSocket();
+		var receivedMessage;
+		var expectedMessage = "A Valid Message\r\n";
+
+		var mockMessage = function(data) {
+			if (data === expectedMessage) {
+				
+			}
+		};
+
+		before(function() {
+			messageBroker = new MessageBroker({
+				client: socket
+			});
+		});
+
+		it("creates the message when recognized", function() {
+			socket.sendMessage("A Valid Message\n\r");
+		});
+	});
 });
