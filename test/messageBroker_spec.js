@@ -78,7 +78,7 @@ describe("a messsage broker", function() {
 			});
 
 			// listen for messages
-			messageBroker.on(MockMessage.channel, function(msg) {
+			messageBroker.on(MockMessage.getChannel(), function(msg) {
 				receivedMessage = msg;
 			});
 
@@ -92,6 +92,37 @@ describe("a messsage broker", function() {
 
 		it("resets the inner message", function() {
 			assert.ok(messageBroker.getMessage() === "");
+		});
+	});
+
+	describe("receiving a complete message followed by an incomplete message", function() {
+		var messageBroker;
+		var socket = new MockSocket();
+		var matchedMessage = "A Fake Message\r\n";
+		var partialMessage = "Another message\r\n";
+		var receivedMessage = null;
+
+		before(function() {
+			messageBroker = new MessageBroker({
+				client: socket,
+				messageFactory: new MessageFactory({
+					parsers: [ MockMessage.parseRegex(/\bA Fake Message[\r\n]+/) ]
+				})
+			});
+
+			messageBroker.on(MockMessage.getChannel(), function(msg) {
+				receivedMessage = msg;
+			});
+
+			socket.emit("data", matchedMessage + partialMessage);
+		});
+
+		it("creates the message", function() {
+			assert.ok(receivedMessage instanceof MockMessage);
+		});
+
+		it("only removes the matched message from the inner message buffer", function() {
+			assert.ok(messageBroker.getMessage() === partialMessage);
 		});
 	});
 });
