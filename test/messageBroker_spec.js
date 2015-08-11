@@ -1,10 +1,13 @@
 var assert = require("assert");
 var MessageBroker = require("../lib/messageBroker");
 var MockSocket = require("./mocks/mockSocket");
+var MessageFactory = require("../lib/messageFactory");
+var MockMessage = require("./mocks/mockMessage");
 
 describe("a messsage broker", function() {
 	describe("connect", function() {
 		var socket = new MockSocket();
+
 		var messageBroker = new MessageBroker({
 			client: socket
 		});
@@ -25,10 +28,19 @@ describe("a messsage broker", function() {
 	describe("receiving an incomplete message", function() {
 		var messageBroker;
 		var socket = new MockSocket();
+		var messageFactory = new MessageFactory({
+			parsers: MockMessage.parseFail
+		});
+		var receivedMessage = null;
 
 		before(function() {
 			messageBroker = new MessageBroker({
-				client: socket
+				client: socket,
+				messageFactory: messageFactory
+			});
+
+			messageBroker.on("fake-message", function(msg) {
+				receivedMessage = msg;
 			});
 		});
 
@@ -42,23 +54,24 @@ describe("a messsage broker", function() {
 			socket.sendMessage("Another Fake Message\n\r");
 			assert.equal("Fake Message\n\rAnother Fake Message\n\r", messageBroker.getMessage());
 		});
+
+		it("does not broadcast any message", function() {
+			assert.ok(receivedMessage === null);
+		});
 	});
 
 	describe("receiving a complete message", function() {
 		var messageBroker;
 		var socket = new MockSocket();
-		var receivedMessage;
-		var expectedMessage = "A Valid Message\r\n";
-
-		var mockMessage = function(data) {
-			if (data === expectedMessage) {
-				
-			}
-		};
+		var messageFactory = new MessageFactory({
+			parsers: [ MockMessage.parseSuccess ]
+		});
+		var receivedMessage = null;
 
 		before(function() {
 			messageBroker = new MessageBroker({
-				client: socket
+				client: socket,
+				messageFactory: messageFactory
 			});
 		});
 
