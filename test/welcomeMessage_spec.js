@@ -1,6 +1,6 @@
 var assert = require("assert");
 var fs = require("fs");
-var welcomeMessage = require("../lib/welcomeMessage");
+var WelcomeMessage = require("../lib/welcomeMessage");
 
 describe("welcome message", function() {
 	describe("parsing data", function() {
@@ -18,12 +18,12 @@ describe("welcome message", function() {
 		});
 
 		it("detects the welcome message", function() {
-			var message = welcomeMessage.parse(rawMessage);
-			assert.ok(message instanceof welcomeMessage.message);
+			var message = WelcomeMessage.parse(rawMessage);
+			assert.ok(message instanceof WelcomeMessage);
 		});
 
 		it("ignores other messages", function() {
-			var message = welcomeMessage.parse("fake data");
+			var message = WelcomeMessage.parse("fake data");
 			assert.ok(message === null);
 		});
 	});
