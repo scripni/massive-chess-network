@@ -32,9 +32,8 @@ describe("authentication message", function() {
 		});
 
 		it("detects the start and end of the message", function() {
-			console.log(message.matchStart);
-			assert.ok(message.matchStart === 0);
-			assert.ok(message.matchEnd === expectedLength);
+			assert.ok(message.index === 0);
+			assert.ok(message.length === expectedLength);
 		});
 	});
 });

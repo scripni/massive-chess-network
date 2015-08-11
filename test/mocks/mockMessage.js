@@ -4,8 +4,8 @@ function MockMessage(args) {
 	assert(args && args.message);
 
 	var self = this;
-	self.matchStart = args.matchStart || 0;
-	self.matchEnd = args.matchEnd || args.message.length;
+	self.index = args.index || 0;
+	self.length = args.length || args.message.length;
 	self.message = args.message;
 	return self;
 }
@@ -47,8 +47,8 @@ MockMessage.parseRegex = function(regex) {
 		if (result) {
 			return new MockMessage({
 				message: data,
-				matchStart: result.index,
-				matchEnd: result[0].length
+				index: result.index,
+				length: result[0].length
 			});
 		}
 	}
