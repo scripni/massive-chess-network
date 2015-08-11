@@ -1,26 +1,28 @@
 var assert = require("assert");
 
-var MockMessage = function() {
-	var self = this;
+function MockMessage() {
+}
 
-	return self;
+MockMessage.prototype.getChannel = function() {
+	return "fake-message";
 };
 
-module.exports = {
-	parseSuccess: function() {
-		return new MockMessage();
-	},
-	parseFail: function() {
-		return null;
-	},
-	parseExact: function(message) {
-		return function(data) {
-			if (data === message) {
-				return new MockMessage();
-			}
+MockMessage.parseSuccess = function() {
+	return new MockMessage();
+};
 
-			return null;
+MockMessage.parseFail = function() {
+	return null;
+};
+
+MockMessage.parseExact = function(message) {
+	return function(data) {
+		if (data === message) {
+			return new MockMessage();
 		}
-	},
-	message: MockMessage
+
+		return null;
+	}
 };
+
+module.exports = MockMessage;

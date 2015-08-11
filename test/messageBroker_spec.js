@@ -9,7 +9,10 @@ describe("a messsage broker", function() {
 		var socket = new MockSocket();
 
 		var messageBroker = new MessageBroker({
-			client: socket
+			client: socket,
+			messageFactory: new MessageFactory({
+				parsers: []
+			})
 		});
 
 		before(function(done) {
@@ -29,7 +32,7 @@ describe("a messsage broker", function() {
 		var messageBroker;
 		var socket = new MockSocket();
 		var messageFactory = new MessageFactory({
-			parsers: MockMessage.parseFail
+			parsers: [ MockMessage.parseFail ]
 		});
 		var receivedMessage = null;
 
@@ -39,7 +42,7 @@ describe("a messsage broker", function() {
 				messageFactory: messageFactory
 			});
 
-			messageBroker.on("fake-message", function(msg) {
+			messageBroker.on(MockMessage.channel, function(msg) {
 				receivedMessage = msg;
 			});
 		});
@@ -63,20 +66,32 @@ describe("a messsage broker", function() {
 	describe("receiving a complete message", function() {
 		var messageBroker;
 		var socket = new MockSocket();
-		var messageFactory = new MessageFactory({
-			parsers: [ MockMessage.parseSuccess ]
-		});
 		var receivedMessage = null;
 
 		before(function() {
+			// create the message broker
 			messageBroker = new MessageBroker({
 				client: socket,
-				messageFactory: messageFactory
+				messageFactory: new MessageFactory({
+					parsers: [ MockMessage.parseSuccess ]
+				})
 			});
+
+			// listen for messages
+			messageBroker.on(MockMessage.channel, function(msg) {
+				receivedMessage = msg;
+			});
+
+			// send a message expected to be parsed
+			socket.sendMessage("A Valid Message\n\r");
 		});
 
 		it("creates the message when recognized", function() {
-			socket.sendMessage("A Valid Message\n\r");
+			assert.ok(receivedMessage instanceof MockMessage);
+		});
+
+		it("resets the inner message", function() {
+			assert.ok(messageBroker.getMessage() === "");
 		});
 	});
 });

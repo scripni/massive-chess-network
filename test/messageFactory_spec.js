@@ -10,7 +10,7 @@ describe("a message factory", function() {
 
 		it("creates the message if recognized", function() {
 			var message = messageFactory.parse("fake data");
-			assert.ok(message instanceof MockMessage.message);
+			assert.ok(message instanceof MockMessage);
 		});
 	});
 
@@ -21,7 +21,7 @@ describe("a message factory", function() {
 
 		it("creates the correct message type", function() {
 			var message = messageFactory.parse("fake data");
-			assert.ok(message instanceof MockMessage.message);
+			assert.ok(message instanceof MockMessage);
 		});
 	});
 
