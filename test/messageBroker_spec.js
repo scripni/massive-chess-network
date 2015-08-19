@@ -9,10 +9,7 @@ describe("a messsage broker", function() {
 		var socket = new MockSocket();
 
 		var messageBroker = new MessageBroker({
-			client: socket,
-			messageFactory: new MessageFactory({
-				parsers: []
-			})
+			client: socket
 		});
 
 		before(function(done) {

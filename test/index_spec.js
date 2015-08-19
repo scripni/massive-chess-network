@@ -6,9 +6,4 @@ describe("the network module", function() {
 		var MessageBroker = module.messageBroker;
 		assert.ok(MessageBroker);
 	});
-
-	it("exports a message factory", function() {
-		var MessageFactory = module.messageFactory;
-		assert.ok(MessageFactory);
-	});
 });
