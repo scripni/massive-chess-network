@@ -2,14 +2,20 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		jshint : {
-			files : ['./index.js', './test/*js', './spec/*js', 'lib/**/*js']
+			files : ["./*.js", "./test/**/*.js", "lib/**/*.js"]
 		},
 		watch : {
 			files : ["**/*.js"],
-			tasks : ["jshint"]
+			tasks : ["jshint", "mochaTest"]
+		},
+		mochaTest : {
+			test : {
+				src : ["test/**/*.js"]
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-mocha-test');
 };

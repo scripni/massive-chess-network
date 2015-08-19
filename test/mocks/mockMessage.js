@@ -12,7 +12,7 @@ function MockMessage(args) {
 
 MockMessage.getChannel = function() {
 	return "fake-message";
-}
+};
 
 MockMessage.prototype.getChannel = function() {
 	return MockMessage.getChannel();
@@ -37,7 +37,7 @@ MockMessage.parseExact = function(message) {
 		}
 
 		return null;
-	}
+	};
 };
 
 MockMessage.parseRegex = function(regex) {
@@ -51,7 +51,7 @@ MockMessage.parseRegex = function(regex) {
 				length: result[0].length
 			});
 		}
-	}
-}
+	};
+};
 
 module.exports = MockMessage;

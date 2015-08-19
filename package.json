@@ -26,7 +26,7 @@
     "grunt": "~0.4.5",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha": "^0.4.13",
+    "grunt-mocha-test": "^0.12.7",
     "mocha": "~2.2.5",
     "should": "~7.0.2"
   }
