@@ -1,5 +1,7 @@
-var FicsUser = require("./lib/models/ficsUser");
+var MessageFactory = require("./lib/messageFactory");
+var MessageBroker = require("./lib/messageBroker");
 
-module.exports = {};
-
-module.exports.ficsUser = FicsUser;
+module.exports = {
+	messageBroker : MessageBroker,
+	messageFactory : MessageFactory
+};
