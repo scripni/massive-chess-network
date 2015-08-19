@@ -1,78 +1,7 @@
-Trying 167.114.65.195...
-Connected to freechess.org.
-Escape character is '^]'.
-
-             _       __     __                             __      
-            | |     / /__  / /________  ____ ___  ___     / /_____ 
-            | | /| / / _ \/ / ___/ __ \/ __ `__ \/ _ \   / __/ __ \
-            | |/ |/ /  __/ / /__/ /_/ / / / / / /  __/  / /_/ /_/ /
-            |__/|__/\___/_/\___/\____/_/ /_/ /_/\___/   \__/\____/ 
-       ^^__                  _____________________                 _  _  _ 
-      /  - \_               / ____/  _/ ____/ ___/   _            | || || |
-    <|    __<              / /_   / // /    \__ \   (_)           |_______|
-    <|    \               / __/ _/ // /___ ___/ /  _              \__ ___ /
-    <|     \             /_/   /___/\____//____/  (_)              |___|_|
-    <|______\                                                      |_|___|
-     _|____|_        ======================================        |___|_|
-    (________)         freechess.org  ----  167.114.65.195        (_______)
-    /________\       ======================================       /_______\ 
-                       (Login screen designed by Alefith)
-
-   ****** Welcome to the Free Internet Chess Server at freechess.org ******
-
-Webpage: http://www.freechess.org
-Head admin : Chessty   Complaints to : complaints@freechess.org
-Server location: freechess.org   Server version : 1.25.20
-
-      If you are not a registered player, enter guest or a unique ID.
-             (If your return key does not work, use cntrl-J)
-
-login: 
-Logging you in as "GuestZBPG"; you may use this name to play unrated games.
-(After logging in, do "help register" for more info on how to register.)
-
-Press return to enter the server as "GuestZBPG":
-
-
-ROBOadmin(*)(TD) tells you: Welcome to FICS - the Free Internet Chess Server. 
-\   Please visit our homepage at http://www.freechess.org. From there you can 
-\   register or download a graphical interface. You can get help by asking a 
-\   question in channel 4 - use "tell 4 My question is...". Or you can get 
-\   help from one of our service representives; these are marked (SR) and can 
-\   be seen with "showsrs"
-fics% 
-GuestMPCG (++++) seeking 25 10 unrated standard f ("play 135" to respond)
+GuestMPCG (++++) seeking 25 10 unrated standard f ("play 135" to respond)
 fics% 
 Ildefons (1830) seeking 2 12 unrated blitz ("play 138" to respond)
 fics% 
 GuestLTTM (++++) seeking 5 0 unrated blitz [white] ("play 1" to respond)
-fics% Trying 167.114.65.195...
-Connected to freechess.org.
-Escape character is '^]'.
-
-             _       __     __                             __      
-            | |     / /__  / /________  ____ ___  ___     / /_____ 
-            | | /| / / _ \/ / ___/ __ \/ __ `__ \/ _ \   / __/ __ \
-            | |/ |/ /  __/ / /__/ /_/ / / / / / /  __/  / /_/ /_/ /
-            |__/|__/\___/_/\___/\____/_/ /_/ /_/\___/   \__/\____/ 
-       ^^__                  _____________________                 _  _  _ 
-      /  - \_               / ____/  _/ ____/ ___/   _            | || || |
-    <|    __<              / /_   / // /    \__ \   (_)           |_______|
-    <|    \               / __/ _/ // /___ ___/ /  _              \__ ___ /
-    <|     \             /_/   /___/\____//____/  (_)              |___|_|
-    <|______\                                                      |_|___|
-     _|____|_        ======================================        |___|_|
-    (________)         freechess.org  ----  167.114.65.195        (_______)
-    /________\       ======================================       /_______\ 
-                       (Login screen designed by Alefith)
-
-   ****** Welcome to the Free Internet Chess Server at freechess.org ******
-
-Webpage: http://www.freechess.org
-Head admin : Chessty   Complaints to : complaints@freechess.org
-Server location: freechess.org   Server version : 1.25.20
-
-      If you are not a registered player, enter guest or a unique ID.
-             (If your return key does not work, use cntrl-J)
-
-login: 
+fics%
+

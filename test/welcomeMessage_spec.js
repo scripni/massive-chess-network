@@ -1,5 +1,5 @@
 var assert = require("assert");
-var fs = require("fs");
+var TestData = require("./data/testData");
 var WelcomeMessage = require("../lib/welcomeMessage");
 
 describe("welcome message", function() {
@@ -7,11 +7,8 @@ describe("welcome message", function() {
 		var message, expectedLength;
 
 		before(function(onDone) {
-			fs.readFile(__dirname + "/data/welcomeMessage.txt", "utf-8", function(err, data) {
-				if (err) {
-					throw err;
-				}
-
+			var testData = new TestData();
+			testData.read("welcomeMessage", function(data) {
 				message = WelcomeMessage.parse(data);
 				expectedLength = data.length;
 				onDone();

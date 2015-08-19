@@ -1,19 +1,16 @@
 var assert = require("assert");
-var fs = require("fs");
+var TestData = require("./data/testData");
 var LoginMessage = require("../lib/loginMessage");
 
 describe("login message", function() {
 	describe("parsing data", function() {
 		var rawMessage;
 		
-		before(function(onDone) {
-			fs.readFile(__dirname + "/data/loginMessage.txt", "utf-8", function(err, data) {
-				if (err) {
-					throw err;
-				}
-
+		before(function(done) {
+			var testData = new TestData();
+			testData.read("loginMessage", function(data) {
 				rawMessage = data;
-				onDone();
+				done();
 			});
 		});
 

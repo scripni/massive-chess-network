@@ -1,22 +1,18 @@
 var assert = require("assert");
-var fs = require("fs");
+var TestData = require("./data/testData");
 var AuthMessage = require("../lib/authMessage");
 
 describe("authentication message", function() {
 	describe("a successful anonymous authentication", function() {
 		var message, expectedLength;
 		
-		before(function(onDone) {
-			fs.readFile(__dirname + "/data/authenticationAccepted.txt", "utf-8", function(err, data) {
-				if (err) {
-					throw err;
-				}
-
+		before(function(done) {
+			var testData = new TestData();
+			testData.read("authenticationAccepted", function(data) {
 				expectedLength = data.length;
 				message = AuthMessage.parse(data);
-				onDone();
+				done();
 			});
-
 		});
 
 		it("has the correct type", function() {
