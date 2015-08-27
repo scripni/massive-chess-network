@@ -26,7 +26,6 @@ describe("Message parser", function() {
 		});
 
 		it("returns the correct message channel", function() {
-			console.log(parsedMessage);
 			assert.equal(parsedMessage.channel, "FakeMessage-channel");
 		});
 	});
