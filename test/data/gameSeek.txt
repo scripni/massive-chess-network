@@ -1,7 +1,0 @@
-GuestMPCG (++++) seeking 25 10 unrated standard f ("play 135" to respond)
-fics% 
-Ildefons (1830) seeking 2 12 unrated blitz ("play 138" to respond)
-fics% 
-GuestLTTM (++++) seeking 5 0 unrated blitz [white] ("play 1" to respond)
-fics%
-
