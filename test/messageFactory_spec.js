@@ -1,38 +1,40 @@
 var assert = require("assert");
 var MessageFactory = require("../lib/messageFactory");
-var MockMessage = require("./mocks/mockMessage");
+var TestData = require("./data/testData");
 
 describe("a message factory", function() {
 	describe("successfully parse a message", function() {
-		var messageFactory = new MessageFactory({
-			parsers: [ MockMessage.parseSuccess ]
-		});
-
-		it("creates the message if recognized", function() {
-			var message = messageFactory.parse("fake data");
-			assert.ok(message instanceof MockMessage);
-		});
+		it("creates the message if recognized");
 	});
 
 	describe("successfully parse with second parser", function() {
-		var messageFactory = new MessageFactory({
-			parsers: [ MockMessage.parseFail, MockMessage.parseSuccess ]
-		});
-
-		it("creates the correct message type", function() {
-			var message = messageFactory.parse("fake data");
-			assert.ok(message instanceof MockMessage);
-		});
+		it("creates the correct message type");
 	});
 
 	describe("no parser successful", function() {
-		var messageFactory = new MessageFactory({
-			parsers: [ MockMessage.parseFail ]
+		it("creates a null message");
+	});
+
+	describe("parsing a welcome message", function() {
+
+		var messageFactory = {};
+		var parsedMessage = {};
+
+		before(function(onDone) {
+			messageFactory = new MessageFactory();
+			var testData = new TestData();
+			testData.read("welcomeMessage", function(data) {
+				parsedMessage = messageFactory.parse(data);
+				onDone();
+			});
 		});
 
-		it("creates a null message", function() {
-			var message = messageFactory.parse("fake data");
-			assert.ok(message === null);
+		it("parses the message successfully", function() {
+			assert.ok(parsedMessage);
+		});
+
+		it("identifies the code", function() {
+			assert.equal(parsedMessage.code, "welcome");
 		});
 	});
 });

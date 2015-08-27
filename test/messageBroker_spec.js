@@ -2,7 +2,7 @@ var assert = require("assert");
 var MessageBroker = require("../lib/messageBroker");
 var MockSocket = require("./mocks/mockSocket");
 var MessageFactory = require("../lib/messageFactory");
-var MockMessage = require("./mocks/mockMessage");
+var MessageParser = require("../lib/messageParser");
 
 describe("a messsage broker", function() {
 	describe("connect", function() {
@@ -28,9 +28,16 @@ describe("a messsage broker", function() {
 	describe("receiving an incomplete message", function() {
 		var messageBroker;
 		var socket = new MockSocket();
+		var parser = new MessageParser({
+				regex: /Foo/,
+				mappings: [],
+				code: "FakeMessage"
+			});
+
 		var messageFactory = new MessageFactory({
-			parsers: [ MockMessage.parseFail ]
+			parsers: [ parser ]
 		});
+
 		var receivedMessage = null;
 
 		before(function() {
@@ -39,7 +46,7 @@ describe("a messsage broker", function() {
 				messageFactory: messageFactory
 			});
 
-			messageBroker.on(MockMessage.channel, function(msg) {
+			messageBroker.on(parser.channel, function(msg) {
 				receivedMessage = msg;
 			});
 		});
@@ -65,61 +72,75 @@ describe("a messsage broker", function() {
 		var socket = new MockSocket();
 		var receivedMessage = null;
 
+		var parser = new MessageParser({
+				regex: /Foo/,
+				mappings: [],
+				code: "FakeMessage"
+			});
+
+		var messageFactory = new MessageFactory({
+			parsers: [ parser ]
+		});
+
 		before(function() {
 			// create the message broker
 			messageBroker = new MessageBroker({
 				client: socket,
-				messageFactory: new MessageFactory({
-					parsers: [ MockMessage.parseSuccess ]
-				})
+				messageFactory: messageFactory
 			});
 
 			// listen for messages
-			messageBroker.on(MockMessage.getChannel(), function(msg) {
+			messageBroker.on(parser.channel, function(msg) {
 				receivedMessage = msg;
 			});
 
 			// send a message expected to be parsed
-			socket.sendMessage("A Valid Message\n\r");
+			socket.sendMessage("Foo");
 		});
 
 		it("creates the message when recognized", function() {
-			assert.ok(receivedMessage instanceof MockMessage);
+			assert.ok(receivedMessage);
 		});
 
 		it("resets the inner message", function() {
-			assert.ok(messageBroker.getMessage() === "");
+			assert.equal(messageBroker.getMessage(), "");
 		});
 	});
 
 	describe("receiving a complete message followed by an incomplete message", function() {
 		var messageBroker;
 		var socket = new MockSocket();
-		var matchedMessage = "A Fake Message\r\n";
-		var partialMessage = "Another message\r\n";
 		var receivedMessage = null;
+
+		var parser = new MessageParser({
+				regex: /Foo/,
+				mappings: [],
+				code: "FakeMessage"
+			});
+
+		var messageFactory = new MessageFactory({
+			parsers: [ parser ]
+		});
 
 		before(function() {
 			messageBroker = new MessageBroker({
 				client: socket,
-				messageFactory: new MessageFactory({
-					parsers: [ MockMessage.parseRegex(/\bA Fake Message[\r\n]+/) ]
-				})
+				messageFactory: messageFactory
 			});
 
-			messageBroker.on(MockMessage.getChannel(), function(msg) {
+			messageBroker.on(parser.channel, function(msg) {
 				receivedMessage = msg;
 			});
 
-			socket.emit("data", matchedMessage + partialMessage);
+			socket.emit("data", "FooBar");
 		});
 
 		it("creates the message", function() {
-			assert.ok(receivedMessage instanceof MockMessage);
+			assert.ok(receivedMessage);
 		});
 
 		it("only removes the matched message from the inner message buffer", function() {
-			assert.ok(messageBroker.getMessage() === partialMessage);
+			assert.equal(messageBroker.getMessage(), "Bar");
 		});
 	});
 });
